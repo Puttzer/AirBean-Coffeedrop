@@ -47,6 +47,31 @@ http://localhost:8080/
 
 ---
 
+## API Setup
+
+This project includes an API for managing data. Follow these steps to set up and run the API locally:
+
+1. Navigate to the `api/` directory within the project:
+   ```bash
+   cd api
+   ```
+
+2. Install the required dependencies for the API:
+   ```bash
+   npm install
+   ```
+
+3. Start the API server:
+   ```bash
+   npm start
+   ```
+
+The API server will run on `http://localhost:3000/` by default.
+
+Ensure the Vue.js app is configured to communicate with this API. Update API base URLs in the Vue app as needed.
+
+---
+
 ## Production
 
 ### Compiles and Minifies for Production
