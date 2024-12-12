@@ -66,7 +66,7 @@ export default {
       bottom: 5px;
       height: 0;
       line-height: 0;
-      border-bottom: 2px dotted #000;
+      // border-bottom: 2px dotted #000;
     }
   }
 
