@@ -179,7 +179,7 @@ h1 {
   background-color: black;
   margin: 0;
   margin-right: 15px;
-  cursor: pointer;
+  cursor: pointer
 }
 
 h1,
