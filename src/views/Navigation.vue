@@ -10,7 +10,7 @@
     <div class="Nav-Container">
       <div class="Nav-Items">
         <button v-on:click="()=>$router.push('Meny')">Meny</button>
-        <button v-on:click="()=>$router.push('About')">VårtKaffe</button>
+        <button v-on:click="()=>$router.push('About')">Vårt Kaffe</button>
         <button v-on:click="()=>$router.push('status')">Orderstatus</button>
         <button v-on:click="()=>$router.push('Profile')">Profile</button>
       </div>
@@ -87,8 +87,6 @@ button {
   width: 40px;
   height: 40px;
   opacity: 0.7;
-  border-radius: 50%;
-  background: white;
 }
 
 .close:hover {
@@ -101,7 +99,7 @@ button {
   content: " ";
   height: 33px;
   width: 2px;
-  background-color: #333;
+  background-color: #ffffff;
 }
 .close:before {
   transform: rotate(45deg);

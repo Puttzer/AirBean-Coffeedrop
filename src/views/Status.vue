@@ -6,6 +6,8 @@
       <img src="./../assets/graphics/loader.png" alt="Generating order" />
     </div>
     <h1 v-if="loading">Brewing!</h1>
+    <a href="#" class="btn" v-if="loading" @click="$router.push('/meny')">Cancel</a>
+
 
     <!-- After loading should display order information and time of arrival -->
     <h1 class="orderNum" v-if="order.orderNr">
