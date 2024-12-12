@@ -1,42 +1,27 @@
 <template>
-  <div class="icon">
-  <div class="carticon" @click="toggleCart">
-    <div class="count">{{ cartLength }}</div>
-    <img src="../assets/graphics/bag.svg" alt="Carticon" />
-  </div>
-  <div v-if="showCart" class="cart-overlay" @click="closeCart">
-    <div class="cart-content" @click.stop>
+  <!-- Wrap the icon and the cart in a container that is position: relative -->
+  <div class="icon" style="position: relative;">
+    <div class="carticon" @click="showCart = !showCart">
+      <div class="count">{{ cartLength }}</div>
+      <img src="../assets/graphics/bag.svg" alt="Carticon" />
+    </div>
+
+    <!-- Place the Cart component absolutely inside this container -->
+    <div v-if="showCart" class="cart-container">
       <Cart />
     </div>
   </div>
-</div>
 </template>
 
 <script>
 import Cart from "./Cart";
-
 export default {
   name: "CartBag",
-  components: {
-    Cart
-  },
+  components: { Cart },
   data() {
-    return {
-      showCart: false
-    };
-  },
-  methods: {
-    toggleCart() {
-      this.showCart = !this.showCart;
-    },
-    closeCart() {
-      this.showCart = false;
-    }
+    return { showCart: false };
   },
   computed: {
-    cart() {
-      return this.$store.state.cart;
-    },
     cartLength() {
       let total = 0;
       this.$store.state.cart.forEach(item => {
@@ -48,9 +33,17 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .icon {
-  padding-left: 300px;
+  position: relative; /* Ensure the cart is positioned relative to this container */
+  padding-left: 300px; /* You can adjust or remove this padding as needed */
+}
+
+/* This container will appear right below the carticon */
+.cart-container {
+  position: absolute;
+  top: 100%;   /* Position it directly below the .carticon */
+  right: 0;   /* Align it to the right edge (or left:0 if you want it aligned left) */
 }
 .carticon {
   background: black;
@@ -62,7 +55,7 @@ export default {
   padding: 1.6rem;
   border-radius: 100%;
   float: right;
-  margin-top: -150px;
+  margin-top: -150px; /* You may need to adjust or remove these margins to get desired placement */
   margin-right: 30px;
   cursor: pointer;
 

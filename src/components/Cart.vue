@@ -2,11 +2,13 @@
   <div class="cartview">
     <div class="cart">
       <h3>Din beställning</h3>
-      <CartItem v-for="(item,index) in cart" v-bind:key="index" v-bind:item="item" />
+      <div class="cart-items">
+        <CartItem v-for="(item,index) in cart" :key="index" :item="item" />
+      </div>
       <div class="totalamount">
         <h3>
           Total
-          <span class="dots"></span>
+          <!-- <span class="dots"></span> -->
           {{ totalamount }} kr
         </h3>
         <p>Inkl moms + drönarleverans</p>
@@ -20,19 +22,13 @@
 import CartItem from "./CartItem";
 export default {
   name: "Cart",
-  components: {
-    CartItem
-  },
+  components: { CartItem },
   computed: {
     cart() {
       return this.$store.state.cart;
     },
     totalamount() {
-      let totalamount = 0;
-      this.$store.state.cart.forEach(item => {
-        totalamount += item.price * item.quantity;
-      });
-      return totalamount;
+      return this.$store.state.cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
     }
   },
   methods: {
@@ -44,91 +40,79 @@ export default {
 };
 </script>
 
-
-<style lang="scss">
+<style lang="scss" scoped>
 .cartview {
   position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 73px 20px 20px;
-  width: calc(100% - 40px);
-}
-.cart {
-  width: 70%;
+  top: 100%; /* Place it just below the carticon */
+  right: 0;  /* Align to the right edge of the cart-wrapper or icon */
+  width: 350px;
+  padding: 1rem;
   background: #fff;
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2), 0 0 4rem rgba(0, 0, 0, 0.2);
-  h3 {
-    font-family: PT Serif;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 32px;
-    line-height: 120%;
-  }
+  box-shadow: 0 0 1rem rgba(0,0,0,0.2);
+  border-radius: 8px;
+  z-index: 10;
 
-  &after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 91%;
-    width: 0;
-    height: 0;
-    border: 8px solid transparent;
-    border-bottom-color: white;
-    border-top: 0;
-    margin-left: -8px;
-    margin-top: -8px;
-    border-radius: 2px;
-  }
-  .totalamount {
+  .cart {
     display: flex;
     flex-direction: column;
-    margin: 2rem 1rem;
-    margin-left: 280px;
-    h3 {
-      display: flex;
-      margin: 0;
-      width: 60%;
-      align-items: center;
+    gap: 1rem;
 
-      .dots {
+    h3 {
+      font-family: "PT Serif", serif;
+      font-weight: bold;
+      font-size: 24px;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .cart-items {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .totalamount {
+      margin-top: 1rem;
+      h3 {
         display: flex;
-        justify-content: center;
         align-items: center;
-        flex: 1;
-        border-bottom: 2px dotted black;
-        margin: 3px;
+        font-size: 18px;
+        margin: 0;
+        line-height: 1.2;
+
+        // .dots {
+        //   flex: 1;
+        //   border-bottom: 2px dotted black;
+        //   margin: 0 0.5rem;
+        // }
+      }
+      p {
+        margin: 0.5rem 0 0;
+        font-size: 14px;
       }
     }
-    p {
-      display: flex;
-      justify-content: flex-start;
-      margin: 0 0 0 5px;
-      padding: 0;
-    }
-  }
-  .button {
-    display: flex;
-    font-size: 1.4rem;
-    width: 90%;
-    align-items: center;
-    text-decoration: none;
-    height: 4rem;
-    margin: 0.7rem 1rem;
-    justify-content: center;
-    align-items: center;
-    color: #eee;
-    border-radius: 50px;
-    background: black;
 
-    &:active {
-      color: white;
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      font-size: 1rem;
+      height: 3rem;
+      width: 100%;
+      border-radius: 50px;
       background: black;
+      color: #fff;
+      cursor: pointer;
+      margin-top: 1rem;
+
+      &:hover {
+        background: #222;
+      }
+      &:active {
+        background: #000;
+      }
     }
   }
-
 }
 </style>
