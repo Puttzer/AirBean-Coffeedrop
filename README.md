@@ -74,6 +74,9 @@ Ensure the Vue.js app is configured to communicate with this API. Update API bas
 
 ---
 
+
+# The following steps are useless but im keeping it in for transparency
+
 ## Production
 
 ### Compiles and Minifies for Production
