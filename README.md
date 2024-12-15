@@ -50,6 +50,7 @@ http://localhost:8080/
 ## API Setup
 
 This project includes an API for managing data. Follow these steps to set up and run the API locally:
+
 NOTE: BEFORE DOING THIS OPEN A DIFFERENT WINDOW SO THAT YOU DONT KILL THE VUE PROJECT :)
 
 1. Navigate to the `api/` directory within the project:
